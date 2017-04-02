@@ -1,8 +1,8 @@
 # mpitumor
-I've writen this program as an assignment of a parallel programming course.
+I've written this program as a programming assignment of a scientific parallel programming course.
 This software simulates a glioma tumor growth inside a 3d brain. The brain is represented as a 3d matrix of difussion coeficients. 
-Then an initial small tumor is placed somewhere inside the matrix and it's difussion and growth is simulated in several interations.
-Difussion equation is simulated using the finite differences method.  The codes has been paralelized an can be compiled in 3 versions:
+Then an initial small tumor is placed somewhere inside the matrix and it's difussion and growth is simulated in several iterations.
+Difussion equation is simulated using the finite differences method.  The code has been paralelized an can be compiled in 3 versions:
 Serial (no additional libraries requiered), OpenMPI and MPI.
 The program runs for 1000 iterations and outputs the total concentration of tumor cells.
 Every 100 iterations, a VTK file is generating containg the 3d points occupied by tumor cells.
