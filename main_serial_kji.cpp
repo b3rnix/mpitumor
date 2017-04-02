@@ -314,7 +314,7 @@ int main()
     rtn=gettimeofday(&tp, NULL);
     t1=(double)tp.tv_sec+(1.e-6)*tp.tv_usec;    
     
-    for (int t = 1; t < 100; t++){
+    for (int t = 1; t < 1000; t++){
         
         //cout << GetLocalTime() << endl;
         
@@ -375,7 +375,7 @@ int main()
 
         
         
-        if (t % 500 == 0){
+        if (t % 100 == 0){
             dumpMatrixToVtk(cerebro, "cerebro_" + std::to_string(t));
         }
         
@@ -416,9 +416,9 @@ int main()
         t2=(double)tp.tv_sec+(1.e-6)*tp.tv_usec;
         elapsed=t2-t1;
 
-        printf("Tiempo empleado: %g\n",elapsed);   
+        printf("Wall time: %g\n",elapsed);   
     
-    printf("Concentración total: %f\n", getConcentracionTotal(cerebro));
+    printf("Total concentration: %f\n", getConcentracionTotal(cerebro));
 
     dumpMatrixToVtk(cerebro, "cerebro_out");
 

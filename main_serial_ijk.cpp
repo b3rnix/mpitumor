@@ -49,10 +49,6 @@ std::string GetLocalTime() {
 
 
 
-
-
-
-// En realidad tendria que chequear si es materia gris/blanca o no
 double RO(double value){
     if ( value >0)
         return 0.107;
@@ -228,7 +224,6 @@ void ReadDifussionData(string dataFile, int tamX, int tamY, int tamZ, int origin
             
     }
     printf ("Difussion data read OK\n");
-    //S3D(difusionMat,0,0,0,66);
 
 }
 
@@ -249,8 +244,6 @@ double getConcentracionTotal(VECTOR3D mat){
 int main()
 {
     
-
-
     
     VECTOR3D cerebro = CREATEM3D(TAM_X,TAM_Y,TAM_Z);
     VECTOR3D difusion = CREATEM3D(TAM_X,TAM_Y,TAM_Z);
@@ -263,7 +256,7 @@ int main()
     printf ("Preprocessing difusion Matrix\n");
     TransformDifusion(difusion);
     
-    // Inicializacion Cerebro
+    // Brain initialization
     double radioTumor = 15.0;
     double posTumorX = TAM_X / 2;
     double posTumorY = TAM_Y / 2;
@@ -305,7 +298,7 @@ int main()
     
     double epsilon = 0.01;
     
-    printf("Concentración total: %f\n", getConcentracionTotal(cerebro));
+    printf("Total concentration: %f\n", getConcentracionTotal(cerebro));
     
     double t1,t2,elapsed;
     struct timeval tp;
@@ -382,39 +375,9 @@ int main()
 
         
         
-        if (t % 500 == 0){
+        if (t % 100 == 0){
             dumpMatrixToVtk(cerebro, "cerebro_" + std::to_string(t));
         }
-        
-        
-        /*
-        // Neuman
-        for (int i = 1; i < TAM_X-2; i++)
-        {
-            for (int j = 1; j < TAM_Y-2; j++){
-                    S3D(cerebro,i,j,0,G3D(cerebro,i,j,1));
-                    S3D(cerebro,i,j,TAM_Z-1,G3D(cerebro,i,j,TAM_Z-2));
-
-            }
-        }
-        
-        for (int i = 1; i < TAM_X-2; i++)
-        {
-            for (int k = 1; k < TAM_Z-2; k++){
-                S3D(cerebro,i,0,k,G3D(cerebro,i,1,k));
-                S3D(cerebro,i,TAM_Y-1,k,G3D(cerebro,i,TAM_Y-1,k));
-                
-            }
-        }
-
-        for (int j = 1; j < TAM_Y-2; j++)
-        {
-            for (int k = 1; k < TAM_Z-2; k++){
-                S3D(cerebro,0,j,k,G3D(cerebro,1,j,k));
-                S3D(cerebro,TAM_X-1,j,k,G3D(cerebro,TAM_X-2,j,k));
-                
-            }
-        }*/
         
         
     }
@@ -425,7 +388,7 @@ int main()
 
         printf("Tiempo empleado: %g\n",elapsed);   
     
-    printf("Concentración total: %f\n", getConcentracionTotal(cerebro));
+    printf("Total concentration: %f\n", getConcentracionTotal(cerebro));
 
     dumpMatrixToVtk(cerebro, "cerebro_out");
 
